@@ -1,0 +1,34 @@
+services:
+  pfa-api:
+    container_name: pfa-api
+    build: .
+    env_file:
+      - ./.env
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 5000:5000
+    networks:
+      - net2
+  
+  mongodb:
+    container_name: mongodb
+    image: mongo:7.0.8-jammy
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-log:/var/log/mongodb
+    networks:
+      - net2
+
+networks:
+  net2:
+
+volumes:
+  mongodb-data:
+  mongodb-log:
