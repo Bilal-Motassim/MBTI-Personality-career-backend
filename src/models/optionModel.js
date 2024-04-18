@@ -16,6 +16,10 @@ const optionSchema = new mongoose.Schema({
     nameAR: {
         type: String,
         required: true,
+    },
+    note:{
+        type: Number,
+        required: true,
     }
 });
 
